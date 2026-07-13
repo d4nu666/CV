@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dan Rivenco — Engineer</title>
+<meta name="description" content="Dan Rivenco — General Engineering student specializing in Cyber Systems. Full-stack, embedded and AI.">
+<style>
+  :root{
+    --bg:#07090d;
+    --bg-soft:#0c0f15;
+    --card:#10141c;
+    --card-hover:#151a24;
+    --border:#1d2430;
+    --text:#e8ecf3;
+    --muted:#8b95a7;
+    --accent:#4cc9f0;
+    --accent2:#a06bff;
+    --grad:linear-gradient(100deg,#4cc9f0,#a06bff);
+    --r:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:#4cc9f055}
+
+  /* scroll progress */
+  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--grad);z-index:100}
+
+  /* nav */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:90;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px clamp(20px,5vw,64px);
+    background:rgba(7,9,13,.72);backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;transition:border-color .3s;
+  }
+  nav.scrolled{border-color:var(--border)}
+  .logo{font-weight:800;letter-spacing:.5px;font-size:17px;text-decoration:none;color:var(--text)}
+  .logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  @media(max-width:720px){.nav-links{display:none}}
+
+  section{padding:clamp(70px,10vw,120px) clamp(20px,5vw,64px);max-width:1150px;margin:0 auto}
+
+  /* hero */
+  .hero{
+    min-height:100svh;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;
+    align-items:center;padding-top:110px;max-width:1150px;margin:0 auto;
+    padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px);padding-bottom:60px;
+  }
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:18px;
+  }
+  .kicker::before{content:"";width:28px;height:2px;background:var(--grad);display:inline-block}
+  h1{font-size:clamp(42px,6.5vw,76px);line-height:1.05;font-weight:800;letter-spacing:-1.5px}
+  h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{margin-top:22px;font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:520px}
+  .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    padding:13px 26px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .btn-primary{background:var(--grad);color:#06070a}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px #4cc9f040}
+  .btn-ghost{border:1px solid var(--border);color:var(--text)}
+  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--muted)}
+  .hero-img{position:relative}
+  .hero-img::before{
+    content:"";position:absolute;inset:-8%;border-radius:32px;
+    background:var(--grad);opacity:.14;filter:blur(50px);z-index:0;
+  }
+  .hero-img img{
+    position:relative;z-index:1;width:100%;max-width:420px;border-radius:24px;display:block;
+    margin:0 auto;border:1px solid var(--border);
+  }
+  .hero-stats{display:flex;gap:36px;margin-top:44px}
+  .stat b{font-size:26px;font-weight:800;display:block;letter-spacing:-.5px}
+  .stat span{font-size:13px;color:var(--muted)}
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;padding-top:120px;text-align:left}
+    .hero-img{order:-1}.hero-img img{max-width:280px;margin:0}
+  }
+
+  /* section headings */
+  h2{font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
+  .lead{color:var(--muted);max-width:640px;margin-bottom:48px;font-size:16px}
+
+  /* cards */
+  .grid{display:grid;gap:18px}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:900px){.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+  .card{
+    background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+    padding:26px;transition:transform .25s,background .25s,border-color .25s;
+  }
+  .card:hover{transform:translateY(-4px);background:var(--card-hover);border-color:#2a3446}
+  .card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+  .card p{font-size:14.5px;color:var(--muted)}
+  .card .icon{
+    width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#4cc9f018,#a06bff18);border:1px solid var(--border);
+    margin-bottom:16px;font-size:20px;
+  }
+
+  /* tech logos */
+  .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+  .tech{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;
+    padding:20px 12px;display:flex;flex-direction:column;align-items:center;gap:12px;
+    transition:transform .22s,border-color .22s,background .22s;
+  }
+  .tech:hover{transform:translateY(-5px);border-color:#2a3446;background:var(--card-hover)}
+  .tech img{width:38px;height:38px}
+  .tech span{font-size:12.5px;color:var(--muted);font-weight:500;text-align:center}
+
+  /* timeline */
+  .timeline{position:relative;padding-left:34px;max-width:760px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
+  .t-item{position:relative;padding-bottom:44px}
+  .t-item:last-child{padding-bottom:0}
+  .t-item::before{
+    content:"";position:absolute;left:-33px;top:6px;width:16px;height:16px;border-radius:50%;
+    background:var(--bg);border:3px solid var(--accent);
+  }
+  .t-item .when{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:1px;text-transform:uppercase}
+  .t-item h3{font-size:20px;font-weight:700;margin:6px 0 4px}
+  .t-item .where{font-size:14px;color:var(--muted);margin-bottom:10px}
+  .t-item p{color:var(--muted);font-size:15px;max-width:640px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .tag{
+    font-size:12.5px;padding:5px 12px;border-radius:999px;
+    border:1px solid var(--border);color:var(--muted);background:var(--bg-soft);
+  }
+
+  /* about split */
+  .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  @media(max-width:860px){.about-wrap{grid-template-columns:1fr}}
+  .about-img{position:relative}
+  .about-img img{width:100%;border-radius:20px;border:1px solid var(--border);display:block}
+  .about-img::after{
+    content:"";position:absolute;inset:-6%;border-radius:32px;z-index:-1;
+    background:var(--grad);opacity:.1;filter:blur(46px);
+  }
+  .about-text p{color:var(--muted);margin-bottom:16px;font-size:16px}
+  .lang-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+  /* qualities */
+  .quality{display:flex;gap:14px;align-items:flex-start}
+  .quality .dot{
+    min-width:10px;height:10px;border-radius:50%;background:var(--grad);margin-top:8px;
+  }
+
+  /* footer / contact */
+  .contact{
+    text-align:center;border-top:1px solid var(--border);
+    padding:clamp(80px,10vw,130px) 24px 40px;
+  }
+  .contact h2{margin-bottom:10px}
+  .contact p{color:var(--muted);margin-bottom:30px}
+  .email-btn{
+    display:inline-block;font-size:clamp(18px,2.6vw,26px);font-weight:700;text-decoration:none;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+    border-bottom:2px solid #4cc9f055;padding-bottom:4px;transition:opacity .2s;
+  }
+  .email-btn:hover{opacity:.8}
+  .foot{margin-top:70px;font-size:13px;color:#5a6272}
+
+  /* reveal animations — fast & clean */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .5s cubic-bezier(.2,.7,.3,1),transform .5s cubic-bezier(.2,.7,.3,1)}
+  .reveal.visible{opacity:1;transform:none}
+  .stagger>*{opacity:0;transform:translateY(22px);transition:opacity .45s cubic-bezier(.2,.7,.3,1),transform .45s cubic-bezier(.2,.7,.3,1)}
+  .stagger.visible>*{opacity:1;transform:none}
+  /* hero load-in */
+  .hero .fade-up{opacity:0;transform:translateY(24px);animation:fadeUp .6s cubic-bezier(.2,.7,.3,1) forwards}
+  .hero .d1{animation-delay:.05s}.hero .d2{animation-delay:.15s}.hero .d3{animation-delay:.25s}
+  .hero .d4{animation-delay:.35s}.hero .d5{animation-delay:.2s}
+  @keyframes fadeUp{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){
+    .reveal,.stagger>*,.hero .fade-up{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav id="nav">
+  <a class="logo" href="#top">Dan<span>Rivenco</span></a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#stack">Stack</a>
+    <a href="#journey">Journey</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <div class="kicker fade-up d1">Engineer · Cyber Systems</div>
+    <h1 class="fade-up d2">Hi, I'm Dan.<br>I build <span class="grad">systems</span> — from silicon to screen.</h1>
+    <p class="sub fade-up d3">Final-year General Engineering student specializing in Cyber Systems. I work across full-stack web, embedded hardware and AI — and I like every layer in between.</p>
+    <div class="hero-cta fade-up d4">
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+      <a class="btn btn-ghost" href="#skills">See what I do</a>
+    </div>
+    <div class="hero-stats fade-up d4">
+      <div class="stat"><b>3</b><span>Languages spoken</span></div>
+      <div class="stat"><b>10+</b><span>Technologies used</span></div>
+      <div class="stat"><b>2027</b><span>Graduating January</span></div>
+    </div>
+  </div>
+  <div class="hero-img fade-up d5">
+    <img src="assets/photo-portrait.jpg" alt="Dan Rivenco">
+  </div>
+</header>
+
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-img reveal">
+      <img src="assets/photo-travel.jpg" alt="Dan Rivenco travelling">
+    </div>
+    <div class="about-text">
+      <div class="kicker reveal">About me</div>
+      <h2 class="reveal">Curious by default,<br>systematic by choice.</h2>
+      <div class="stagger">
+        <p>I'm a Moldovan-Romanian engineering student in the final year of a Bachelor in General Engineering, specializing in Cyber Systems. I approach complex problems by breaking them into small, testable pieces — then I don't stop until they work.</p>
+        <p>Alongside my studies I run operations as chief manager at Restaurant Romarin, where I started as a waiter and learned the whole business from the ground up. Off the clock you'll find me travelling, cooking, collecting manga, exploring wine or gaming.</p>
+        <div class="lang-row">
+          <span class="tag">🇬🇧 English</span>
+          <span class="tag">🇷🇺 Russian</span>
+          <span class="tag">🇷🇴 Romanian</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="kicker reveal">What I do</div>
+  <h2 class="reveal">Technical skills</h2>
+  <p class="lead reveal">From bare-metal microcontrollers to full-stack web apps — one toolbox, many layers.</p>
+  <div class="grid cols-3 stagger">
+    <div class="card"><div class="icon">🌐</div><h3>Full-Stack Web</h3><p>Web applications, REST APIs, authentication systems and real-time monitoring dashboards with Next.js and NestJS.</p></div>
+    <div class="card"><div class="icon">🔌</div><h3>Embedded & Cyber-Physical</h3><p>ESP32 programming, sensors and actuators, GPIO, ADC, PWM, I²C, OLED displays, pumps, relays and motor drivers.</p></div>
+    <div class="card"><div class="icon">🤖</div><h3>AI & Algorithms</h3><p>BFS, UCS, greedy, A*, minimax and heuristic search; formal reasoning and belief revision.</p></div>
+    <div class="card"><div class="icon">🗄️</div><h3>Databases</h3><p>PostgreSQL and SQL, relational design, data modelling, normalization and Prisma ORM.</p></div>
+    <div class="card"><div class="icon">⚙️</div><h3>Control & Automation</h3><p>PID temperature control, automated biological processes, sensor calibration and system monitoring.</p></div>
+    <div class="card"><div class="icon">🧠</div><h3>Computer Systems</h3><p>RISC-V assembly, compiler and interpreter development, computer architecture and low-level concepts.</p></div>
+    <div class="card"><div class="icon">📊</div><h3>Data Analysis</h3><p>Processing, analysing and visualising experimental data with Python, pandas and Matplotlib.</p></div>
+    <div class="card"><div class="icon">🧩</div><h3>Software Design</h3><p>OOP and functional programming, algorithms and data structures, debugging, testing and modular design.</p></div>
+    <div class="card"><div class="icon">🧭</div><h3>Project Coordination</h3><p>Defining requirements, staging development, prioritising tasks, testing components and documenting results.</p></div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="kicker reveal">Toolbox</div>
+  <h2 class="reveal">Stack & tools</h2>
+  <p class="lead reveal">The languages, frameworks and tools I work with daily.</p>
+  <div class="tech-grid stagger">
+    <div class="tech"><img src="assets/logos/python.svg" alt="Python"><span>Python</span></div>
+    <div class="tech"><img src="assets/logos/micropython.svg" alt="MicroPython"><span>MicroPython</span></div>
+    <div class="tech"><img src="assets/logos/cplusplus.svg" alt="C++"><span>C++</span></div>
+    <div class="tech"><img src="assets/logos/typescript.svg" alt="TypeScript"><span>TypeScript</span></div>
+    <div class="tech"><img src="assets/logos/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
+    <div class="tech"><img src="assets/logos/riscv.svg" alt="RISC-V"><span>RISC-V ASM</span></div>
+    <div class="tech"><img src="assets/logos/nextdotjs.svg" alt="Next.js"><span>Next.js</span></div>
+    <div class="tech"><img src="assets/logos/nestjs.svg" alt="NestJS"><span>NestJS</span></div>
+    <div class="tech"><img src="assets/logos/postgresql.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
+    <div class="tech"><img src="assets/logos/prisma.svg" alt="Prisma"><span>Prisma</span></div>
+    <div class="tech"><img src="assets/logos/espressif.svg" alt="ESP32"><span>ESP32</span></div>
+    <div class="tech"><img src="assets/logos/pandas.svg" alt="pandas"><span>pandas</span></div>
+    <div class="tech"><img src="assets/logos/git.svg" alt="Git"><span>Git</span></div>
+    <div class="tech"><img src="assets/logos/github.svg" alt="GitHub"><span>GitHub</span></div>
+    <div class="tech"><img src="assets/logos/gitlab.svg" alt="GitLab"><span>GitLab</span></div>
+    <div class="tech"><img src="assets/logos/docker.svg" alt="Docker"><span>Docker</span></div>
+    <div class="tech"><img src="assets/logos/linux.svg" alt="Linux"><span>Linux / macOS</span></div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="kicker reveal">Journey</div>
+  <h2 class="reveal">Education & experience</h2>
+  <p class="lead reveal">Studying engineering by day, running a restaurant by night.</p>
+  <div class="timeline">
+    <div class="t-item reveal">
+      <div class="when">Sept 2023 — Jan 2027</div>
+      <h3>BSc General Engineering — Cyber Systems</h3>
+      <div class="where">Final year</div>
+      <p>Specializing in cyber systems: embedded programming, computer architecture, AI, control systems and full-stack software development. Comfortable in interdisciplinary teams from planning through implementation, testing and presentation.</p>
+      <div class="tags">
+        <span class="tag">Embedded Systems</span><span class="tag">AI & Search</span>
+        <span class="tag">Compilers</span><span class="tag">Control Systems</span><span class="tag">Full-Stack</span>
+      </div>
+    </div>
+    <div class="t-item reveal">
+      <div class="when">Oct 2023 — Present</div>
+      <h3>Chief Manager</h3>
+      <div class="where">Restaurant Romarin · started as waiter</div>
+      <p>Learned every corner of the business and worked my way up to chief manager. I run client and tasting events, design the menu, handle financial overviews and build the weekly work plans for the staff.</p>
+      <div class="tags">
+        <span class="tag">Team Leadership</span><span class="tag">Event Management</span>
+        <span class="tag">Financial Overview</span><span class="tag">Menu Design</span><span class="tag">Staff Planning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="qualities">
+  <div class="kicker reveal">How I work</div>
+  <h2 class="reveal">Personal qualities</h2>
+  <p class="lead reveal">The habits behind the skills.</p>
+  <div class="grid cols-2 stagger">
+    <div class="card quality"><div class="dot"></div><p><b>Analytical & systematic.</b> I divide complex problems into small, testable components and evaluate solutions logically.</p></div>
+    <div class="card quality"><div class="dot"></div><p><b>Persistent problem-solver.</b> I stay focused through technical difficulties and troubleshoot software, hardware and integration issues methodically.</p></div>
+    <div class="card quality"><div class="dot"></div><p><b>Independent learner.</b> I pick up unfamiliar technologies quickly and apply them in practice with limited supervision.</p></div>
+    <div class="card quality"><div class="dot"></div><p><b>Ownership-oriented.</b> I take responsibility for finishing tasks, validating results and meeting requirements.</p></div>
+    <div class="card quality"><div class="dot"></div><p><b>Adaptable.</b> Comfortable across software, electronics, databases, AI and engineering experimentation.</p></div>
+    <div class="card quality"><div class="dot"></div><p><b>Detail-oriented.</b> Close attention to system behaviour, test results, data accuracy and documentation.</p></div>
+    <div class="card quality"><div class="dot"></div><p><b>Collaborative.</b> Effective in interdisciplinary teams, from planning to implementation and presentation.</p></div>
+    <div class="card quality"><div class="dot"></div><p><b>Clear communicator.</b> I explain technical systems through reports, diagrams and demos — for any audience.</p></div>
+  </div>
+</section>
+
+<footer class="contact" id="contact">
+  <div class="kicker reveal" style="justify-content:center;display:inline-flex">Contact</div>
+  <h2 class="reveal">Let's build something.</h2>
+  <p class="reveal">Open to opportunities in software, embedded systems and everything in between.</p>
+  <a class="email-btn reveal" href="mailto:rivenco.dan@gmail.com">rivenco.dan@gmail.com</a>
+  <div class="foot">© 2026 Dan Rivenco · Built with care, no frameworks needed.</div>
+</footer>
+
+<script>
+  // scroll progress + nav border
+  const bar=document.getElementById('progress'),nav=document.getElementById('nav');
+  let ticking=false;
+  addEventListener('scroll',()=>{
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(()=>{
+      const h=document.documentElement;
+      bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+      nav.classList.toggle('scrolled',h.scrollTop>10);
+      ticking=false;
+    });
+  },{passive:true});
+
+  // reveal on scroll
+  const io=new IntersectionObserver(entries=>{
+    for(const e of entries)if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
+
+  // stagger children delays
+  document.querySelectorAll('.stagger').forEach(g=>{
+    [...g.children].forEach((c,i)=>c.style.transitionDelay=Math.min(i*55,440)+'ms');
+  });
+</script>
+</body>
+</html>
