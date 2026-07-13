@@ -4,199 +4,186 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dan Rivenco — Engineer</title>
-<meta name="description" content="Dan Rivenco — General Engineering student specializing in Cyber Systems. Full-stack, embedded and AI.">
+<meta name="description" content="Dan Rivenco — General Engineering student at DTU, specializing in Cyber Systems.">
 <style>
   :root{
-    --bg:#07090d;
-    --bg-soft:#0c0f15;
-    --card:#10141c;
-    --card-hover:#151a24;
-    --border:#1d2430;
-    --text:#e8ecf3;
-    --muted:#8b95a7;
-    --accent:#4cc9f0;
-    --accent2:#a06bff;
-    --grad:linear-gradient(100deg,#4cc9f0,#a06bff);
-    --r:16px;
+    --bg:#0d0d0d;
+    --text:#ececec;
+    --muted:#8a8a8a;
+    --faint:#5a5a5a;
+    --line:#232323;
+    --card:#121212;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html,body{overflow-x:hidden}
   body{
     background:var(--bg);color:var(--text);
     font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
   }
-  ::selection{background:#4cc9f055}
+  ::selection{background:#ececec;color:#0d0d0d}
+  img{display:block}
+  a{color:inherit}
 
-  /* scroll progress */
-  #progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--grad);z-index:100}
-
-  /* nav */
+  /* ---------- nav ---------- */
   nav{
-    position:fixed;top:0;left:0;right:0;z-index:90;
+    position:fixed;inset:0 0 auto 0;z-index:50;
     display:flex;justify-content:space-between;align-items:center;
-    padding:16px clamp(20px,5vw,64px);
-    background:rgba(7,9,13,.72);backdrop-filter:blur(12px);
-    border-bottom:1px solid transparent;transition:border-color .3s;
+    padding:20px clamp(20px,5vw,72px);
+    background:rgba(13,13,13,.8);backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;transition:border-color .4s;
   }
-  nav.scrolled{border-color:var(--border)}
-  .logo{font-weight:800;letter-spacing:.5px;font-size:17px;text-decoration:none;color:var(--text)}
-  .logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .nav-links{display:flex;gap:26px}
-  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+  nav.scrolled{border-color:var(--line)}
+  .logo{font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{
+    font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;transition:color .25s;
+  }
   .nav-links a:hover{color:var(--text)}
   @media(max-width:720px){.nav-links{display:none}}
 
-  section{padding:clamp(70px,10vw,120px) clamp(20px,5vw,64px);max-width:1150px;margin:0 auto}
-
-  /* hero */
-  .hero{
-    min-height:100svh;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;
-    align-items:center;padding-top:110px;max-width:1150px;margin:0 auto;
-    padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px);padding-bottom:60px;
+  /* ---------- shared ---------- */
+  .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}
+  section{padding:clamp(90px,12vw,160px) 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(48px,7vw,90px)}
+  .sec-num{font-size:13px;color:var(--faint);letter-spacing:2px}
+  h2{
+    font-size:clamp(30px,4.4vw,54px);font-weight:300;letter-spacing:-1px;line-height:1.1;
   }
+  h2 .line-mask{display:block;overflow:hidden}
   .kicker{
-    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
-    letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:18px;
+    font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);
+    margin-bottom:20px;
   }
-  .kicker::before{content:"";width:28px;height:2px;background:var(--grad);display:inline-block}
-  h1{font-size:clamp(42px,6.5vw,76px);line-height:1.05;font-weight:800;letter-spacing:-1.5px}
-  h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p.sub{margin-top:22px;font-size:clamp(16px,1.6vw,19px);color:var(--muted);max-width:520px}
-  .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
-  .btn{
-    padding:13px 26px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;
-    transition:transform .2s,box-shadow .2s;
+
+  /* ---------- hero ---------- */
+  #hero{
+    min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+    border-top:none;position:relative;padding-top:80px;
   }
-  .btn-primary{background:var(--grad);color:#06070a}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px #4cc9f040}
-  .btn-ghost{border:1px solid var(--border);color:var(--text)}
-  .btn-ghost:hover{transform:translateY(-2px);border-color:var(--muted)}
-  .hero-img{position:relative}
-  .hero-img::before{
-    content:"";position:absolute;inset:-8%;border-radius:32px;
-    background:var(--grad);opacity:.14;filter:blur(50px);z-index:0;
-  }
-  .hero-img img{
-    position:relative;z-index:1;width:100%;max-width:420px;border-radius:24px;display:block;
-    margin:0 auto;border:1px solid var(--border);
-  }
-  .hero-stats{display:flex;gap:36px;margin-top:44px}
-  .stat b{font-size:26px;font-weight:800;display:block;letter-spacing:-.5px}
-  .stat span{font-size:13px;color:var(--muted)}
+  .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:64px;align-items:center}
   @media(max-width:860px){
-    .hero{grid-template-columns:1fr;padding-top:120px;text-align:left}
-    .hero-img{order:-1}.hero-img img{max-width:280px;margin:0}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-photo{order:-1;max-width:240px}
   }
-
-  /* section headings */
-  h2{font-size:clamp(28px,3.6vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
-  .lead{color:var(--muted);max-width:640px;margin-bottom:48px;font-size:16px}
-
-  /* cards */
-  .grid{display:grid;gap:18px}
-  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-  @media(max-width:900px){.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:620px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
-  .card{
-    background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-    padding:26px;transition:transform .25s,background .25s,border-color .25s;
+  h1{
+    font-size:clamp(52px,9.5vw,124px);font-weight:200;letter-spacing:-3px;line-height:.98;
   }
-  .card:hover{transform:translateY(-4px);background:var(--card-hover);border-color:#2a3446}
-  .card h3{font-size:17px;font-weight:700;margin-bottom:8px}
-  .card p{font-size:14.5px;color:var(--muted)}
-  .card .icon{
-    width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,#4cc9f018,#a06bff18);border:1px solid var(--border);
-    margin-bottom:16px;font-size:20px;
+  h1 b{font-weight:600}
+  .title-mask{display:block;overflow:hidden;padding-bottom:.06em}
+  .hero-sub{
+    margin-top:36px;max-width:460px;color:var(--muted);font-size:16px;font-weight:300;
   }
+  .hero-meta{
+    margin-top:52px;display:flex;gap:48px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);
+  }
+  .hero-meta b{display:block;color:var(--text);font-weight:500;font-size:14px;letter-spacing:.5px;text-transform:none;margin-top:4px}
+  .hero-photo{position:relative}
+  .hero-photo img{
+    width:100%;max-width:380px;filter:grayscale(1) contrast(1.05);
+    transition:filter .6s;
+  }
+  .hero-photo:hover img{filter:grayscale(0)}
+  .scroll-hint{
+    position:absolute;bottom:34px;left:clamp(20px,5vw,72px);
+    font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--faint);
+    display:flex;align-items:center;gap:14px;
+  }
+  .scroll-hint::after{content:"";width:56px;height:1px;background:var(--faint)}
 
-  /* tech logos */
-  .tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:center}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+  .about-photo{overflow:hidden}
+  .about-photo img{width:100%;filter:grayscale(1) contrast(1.05);transition:filter .6s}
+  .about-photo:hover img{filter:grayscale(0)}
+  .about-text p{color:var(--muted);font-weight:300;font-size:17px;margin-bottom:20px}
+  .about-text p b{color:var(--text);font-weight:500}
+  .langs{display:flex;gap:26px;margin-top:34px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--faint)}
+
+  /* ---------- skills ---------- */
+  .skill-row{
+    display:grid;grid-template-columns:64px 1fr 1.2fr;gap:clamp(16px,3vw,48px);
+    padding:30px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .skill-row:first-of-type{border-top:1px solid var(--line)}
+  .skill-row .n{font-size:12px;color:var(--faint);letter-spacing:1px}
+  .skill-row h3{font-size:clamp(17px,2vw,22px);font-weight:400}
+  .skill-row p{font-size:14.5px;color:var(--muted);font-weight:300}
+  @media(max-width:720px){.skill-row{grid-template-columns:40px 1fr}.skill-row p{grid-column:2}}
+
+  /* ---------- stack (horizontal) ---------- */
+  #stack{overflow:hidden}
+  #stack .sec-head{padding:0 clamp(20px,5vw,72px);max-width:1200px;margin-left:auto;margin-right:auto}
+  .track{
+    display:flex;gap:16px;width:max-content;
+    padding:0 clamp(20px,5vw,72px) 10px;align-items:stretch;
+  }
   .tech{
-    background:var(--card);border:1px solid var(--border);border-radius:14px;
-    padding:20px 12px;display:flex;flex-direction:column;align-items:center;gap:12px;
-    transition:transform .22s,border-color .22s,background .22s;
+    width:170px;flex-shrink:0;border:1px solid var(--line);background:var(--card);
+    padding:34px 16px 26px;display:flex;flex-direction:column;align-items:center;gap:18px;
+    transition:border-color .3s;
   }
-  .tech:hover{transform:translateY(-5px);border-color:#2a3446;background:var(--card-hover)}
-  .tech img{width:38px;height:38px}
-  .tech span{font-size:12.5px;color:var(--muted);font-weight:500;text-align:center}
+  .tech:hover{border-color:#3a3a3a}
+  .tech img{width:36px;height:36px;opacity:.85}
+  .tech span{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+  .drag-hint{
+    padding:26px clamp(20px,5vw,72px) 0;font-size:11px;letter-spacing:3px;
+    text-transform:uppercase;color:var(--faint);max-width:1200px;margin:0 auto;
+  }
 
-  /* timeline */
-  .timeline{position:relative;padding-left:34px;max-width:760px}
-  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--border)}
-  .t-item{position:relative;padding-bottom:44px}
-  .t-item:last-child{padding-bottom:0}
-  .t-item::before{
-    content:"";position:absolute;left:-33px;top:6px;width:16px;height:16px;border-radius:50%;
-    background:var(--bg);border:3px solid var(--accent);
+  /* ---------- journey ---------- */
+  .t-item{
+    display:grid;grid-template-columns:200px 1fr;gap:clamp(20px,4vw,60px);
+    padding:44px 0;border-bottom:1px solid var(--line);
   }
-  .t-item .when{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:1px;text-transform:uppercase}
-  .t-item h3{font-size:20px;font-weight:700;margin:6px 0 4px}
-  .t-item .where{font-size:14px;color:var(--muted);margin-bottom:10px}
-  .t-item p{color:var(--muted);font-size:15px;max-width:640px}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .t-item:first-of-type{border-top:1px solid var(--line)}
+  @media(max-width:720px){.t-item{grid-template-columns:1fr;gap:8px}}
+  .t-when{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--faint);padding-top:6px}
+  .t-item h3{font-size:clamp(19px,2.4vw,26px);font-weight:400}
+  .t-where{font-size:14px;color:var(--muted);margin:4px 0 14px}
+  .t-item p{font-size:15px;color:var(--muted);font-weight:300;max-width:620px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
   .tag{
-    font-size:12.5px;padding:5px 12px;border-radius:999px;
-    border:1px solid var(--border);color:var(--muted);background:var(--bg-soft);
+    font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    padding:6px 14px;border:1px solid var(--line);color:var(--muted);
   }
 
-  /* about split */
-  .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  @media(max-width:860px){.about-wrap{grid-template-columns:1fr}}
-  .about-img{position:relative}
-  .about-img img{width:100%;border-radius:20px;border:1px solid var(--border);display:block}
-  .about-img::after{
-    content:"";position:absolute;inset:-6%;border-radius:32px;z-index:-1;
-    background:var(--grad);opacity:.1;filter:blur(46px);
+  /* ---------- qualities ---------- */
+  .q-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(30px,5vw,80px)}
+  @media(max-width:720px){.q-grid{grid-template-columns:1fr}}
+  .q{
+    padding:26px 0;border-bottom:1px solid var(--line);
+    font-size:15px;color:var(--muted);font-weight:300;
   }
-  .about-text p{color:var(--muted);margin-bottom:16px;font-size:16px}
-  .lang-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .q b{color:var(--text);font-weight:500;display:block;margin-bottom:4px;font-size:16px}
 
-  /* qualities */
-  .quality{display:flex;gap:14px;align-items:flex-start}
-  .quality .dot{
-    min-width:10px;height:10px;border-radius:50%;background:var(--grad);margin-top:8px;
+  /* ---------- contact ---------- */
+  #contact{text-align:left;padding-bottom:60px}
+  .email{
+    font-size:clamp(30px,6vw,72px);font-weight:200;letter-spacing:-2px;
+    text-decoration:none;display:inline-block;margin-top:10px;
+    border-bottom:1px solid var(--line);padding-bottom:8px;transition:border-color .3s;
+    word-break:break-all;
+  }
+  .email:hover{border-color:var(--text)}
+  .foot{
+    margin-top:clamp(70px,9vw,120px);padding-top:26px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--faint);
   }
 
-  /* footer / contact */
-  .contact{
-    text-align:center;border-top:1px solid var(--border);
-    padding:clamp(80px,10vw,130px) 24px 40px;
-  }
-  .contact h2{margin-bottom:10px}
-  .contact p{color:var(--muted);margin-bottom:30px}
-  .email-btn{
-    display:inline-block;font-size:clamp(18px,2.6vw,26px);font-weight:700;text-decoration:none;
-    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
-    border-bottom:2px solid #4cc9f055;padding-bottom:4px;transition:opacity .2s;
-  }
-  .email-btn:hover{opacity:.8}
-  .foot{margin-top:70px;font-size:13px;color:#5a6272}
-
-  /* reveal animations — fast & clean */
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .5s cubic-bezier(.2,.7,.3,1),transform .5s cubic-bezier(.2,.7,.3,1)}
-  .reveal.visible{opacity:1;transform:none}
-  .stagger>*{opacity:0;transform:translateY(22px);transition:opacity .45s cubic-bezier(.2,.7,.3,1),transform .45s cubic-bezier(.2,.7,.3,1)}
-  .stagger.visible>*{opacity:1;transform:none}
-  /* hero load-in */
-  .hero .fade-up{opacity:0;transform:translateY(24px);animation:fadeUp .6s cubic-bezier(.2,.7,.3,1) forwards}
-  .hero .d1{animation-delay:.05s}.hero .d2{animation-delay:.15s}.hero .d3{animation-delay:.25s}
-  .hero .d4{animation-delay:.35s}.hero .d5{animation-delay:.2s}
-  @keyframes fadeUp{to{opacity:1;transform:none}}
   @media(prefers-reduced-motion:reduce){
-    .reveal,.stagger>*,.hero .fade-up{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
-    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
   }
 </style>
 </head>
 <body>
 
-<div id="progress"></div>
-
 <nav id="nav">
-  <a class="logo" href="#top">Dan<span>Rivenco</span></a>
+  <a class="logo" href="#hero">Dan Rivenco</a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
@@ -206,75 +193,76 @@
   </div>
 </nav>
 
-<header class="hero" id="top">
-  <div>
-    <div class="kicker fade-up d1">Engineer · Cyber Systems</div>
-    <h1 class="fade-up d2">Hi, I'm Dan.<br>I build <span class="grad">systems</span> — from silicon to screen.</h1>
-    <p class="sub fade-up d3">Final-year General Engineering student specializing in Cyber Systems. I work across full-stack web, embedded hardware and AI — and I like every layer in between.</p>
-    <div class="hero-cta fade-up d4">
-      <a class="btn btn-primary" href="#contact">Get in touch</a>
-      <a class="btn btn-ghost" href="#skills">See what I do</a>
+<section id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">Engineer — Cyber Systems, DTU</div>
+      <h1 id="hero-title">
+        <span class="title-mask"><span class="title-line">Dan</span></span>
+        <span class="title-mask"><span class="title-line"><b>Rivenco</b></span></span>
+      </h1>
+      <p class="hero-sub">Final-year General Engineering student at the Technical University of Denmark. I build systems across full-stack web, embedded hardware and AI.</p>
+      <div class="hero-meta">
+        <div>Based in<b>Denmark</b></div>
+        <div>Graduating<b>January 2027</b></div>
+        <div>Languages<b>EN · RU · RO</b></div>
+      </div>
     </div>
-    <div class="hero-stats fade-up d4">
-      <div class="stat"><b>3</b><span>Languages spoken</span></div>
-      <div class="stat"><b>10+</b><span>Technologies used</span></div>
-      <div class="stat"><b>2027</b><span>Graduating January</span></div>
-    </div>
+    <div class="hero-photo"><img src="assets/photo-portrait.jpg" alt="Dan Rivenco"></div>
   </div>
-  <div class="hero-img fade-up d5">
-    <img src="assets/photo-portrait.jpg" alt="Dan Rivenco">
-  </div>
-</header>
+  <div class="scroll-hint">Scroll</div>
+</section>
 
 <section id="about">
-  <div class="about-wrap">
-    <div class="about-img reveal">
-      <img src="assets/photo-travel.jpg" alt="Dan Rivenco travelling">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="split-title">About</h2>
     </div>
-    <div class="about-text">
-      <div class="kicker reveal">About me</div>
-      <h2 class="reveal">Curious by default,<br>systematic by choice.</h2>
-      <div class="stagger">
-        <p>I'm a Moldovan-Romanian engineering student in the final year of a Bachelor in General Engineering, specializing in Cyber Systems. I approach complex problems by breaking them into small, testable pieces — then I don't stop until they work.</p>
-        <p>Alongside my studies I run operations as chief manager at Restaurant Romarin, where I started as a waiter and learned the whole business from the ground up. Off the clock you'll find me travelling, cooking, collecting manga, exploring wine or gaming.</p>
-        <div class="lang-row">
-          <span class="tag">🇬🇧 English</span>
-          <span class="tag">🇷🇺 Russian</span>
-          <span class="tag">🇷🇴 Romanian</span>
-        </div>
+    <div class="about-grid">
+      <div class="about-photo from-left"><img src="assets/photo-travel.jpg" alt="Dan Rivenco travelling"></div>
+      <div class="about-text from-right">
+        <p>I'm a <b>Moldovan-Romanian</b> engineering student in the final year of a BSc in General Engineering at <b>DTU — Technical University of Denmark</b>, specializing in Cyber Systems.</p>
+        <p>I approach complex problems by breaking them into small, testable pieces — then I don't stop until they work. Alongside my studies I run operations as <b>chief manager at Restaurant Romarin</b>, where I started as a waiter and learned the whole business from the ground up.</p>
+        <p>Off the clock: travelling, cooking, collecting manga, exploring wine, gaming.</p>
+        <div class="langs"><span>English</span><span>Russian</span><span>Romanian</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="skills">
-  <div class="kicker reveal">What I do</div>
-  <h2 class="reveal">Technical skills</h2>
-  <p class="lead reveal">From bare-metal microcontrollers to full-stack web apps — one toolbox, many layers.</p>
-  <div class="grid cols-3 stagger">
-    <div class="card"><div class="icon">🌐</div><h3>Full-Stack Web</h3><p>Web applications, REST APIs, authentication systems and real-time monitoring dashboards with Next.js and NestJS.</p></div>
-    <div class="card"><div class="icon">🔌</div><h3>Embedded & Cyber-Physical</h3><p>ESP32 programming, sensors and actuators, GPIO, ADC, PWM, I²C, OLED displays, pumps, relays and motor drivers.</p></div>
-    <div class="card"><div class="icon">🤖</div><h3>AI & Algorithms</h3><p>BFS, UCS, greedy, A*, minimax and heuristic search; formal reasoning and belief revision.</p></div>
-    <div class="card"><div class="icon">🗄️</div><h3>Databases</h3><p>PostgreSQL and SQL, relational design, data modelling, normalization and Prisma ORM.</p></div>
-    <div class="card"><div class="icon">⚙️</div><h3>Control & Automation</h3><p>PID temperature control, automated biological processes, sensor calibration and system monitoring.</p></div>
-    <div class="card"><div class="icon">🧠</div><h3>Computer Systems</h3><p>RISC-V assembly, compiler and interpreter development, computer architecture and low-level concepts.</p></div>
-    <div class="card"><div class="icon">📊</div><h3>Data Analysis</h3><p>Processing, analysing and visualising experimental data with Python, pandas and Matplotlib.</p></div>
-    <div class="card"><div class="icon">🧩</div><h3>Software Design</h3><p>OOP and functional programming, algorithms and data structures, debugging, testing and modular design.</p></div>
-    <div class="card"><div class="icon">🧭</div><h3>Project Coordination</h3><p>Defining requirements, staging development, prioritising tasks, testing components and documenting results.</p></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="split-title">Technical skills</h2>
+    </div>
+    <div class="skill-list">
+      <div class="skill-row"><span class="n">01</span><h3>Full-Stack Web</h3><p>Web apps, REST APIs, authentication and real-time monitoring dashboards with Next.js and NestJS.</p></div>
+      <div class="skill-row"><span class="n">02</span><h3>Embedded & Cyber-Physical</h3><p>ESP32, sensors and actuators, GPIO, ADC, PWM, I²C, OLED displays, pumps, relays, motor drivers.</p></div>
+      <div class="skill-row"><span class="n">03</span><h3>AI & Algorithms</h3><p>BFS, UCS, greedy, A*, minimax, heuristic search, formal reasoning and belief revision.</p></div>
+      <div class="skill-row"><span class="n">04</span><h3>Databases</h3><p>PostgreSQL, SQL, relational design, data modelling, normalization, Prisma ORM.</p></div>
+      <div class="skill-row"><span class="n">05</span><h3>Control & Automation</h3><p>PID temperature control, automated biological processes, sensor calibration, system monitoring.</p></div>
+      <div class="skill-row"><span class="n">06</span><h3>Computer Systems</h3><p>RISC-V assembly, compiler and interpreter development, computer architecture, low-level concepts.</p></div>
+      <div class="skill-row"><span class="n">07</span><h3>Data Analysis</h3><p>Processing, analysing and visualising experimental data with Python, pandas and Matplotlib.</p></div>
+      <div class="skill-row"><span class="n">08</span><h3>Software Design</h3><p>OOP and functional programming, algorithms and data structures, debugging, testing, modular design.</p></div>
+      <div class="skill-row"><span class="n">09</span><h3>Project Coordination</h3><p>Requirements, staged development, task prioritisation, component testing, technical documentation.</p></div>
+    </div>
   </div>
 </section>
 
 <section id="stack">
-  <div class="kicker reveal">Toolbox</div>
-  <h2 class="reveal">Stack & tools</h2>
-  <p class="lead reveal">The languages, frameworks and tools I work with daily.</p>
-  <div class="tech-grid stagger">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2 class="split-title">Stack & tools</h2>
+  </div>
+  <div class="track">
     <div class="tech"><img src="assets/logos/python.svg" alt="Python"><span>Python</span></div>
     <div class="tech"><img src="assets/logos/micropython.svg" alt="MicroPython"><span>MicroPython</span></div>
     <div class="tech"><img src="assets/logos/cplusplus.svg" alt="C++"><span>C++</span></div>
     <div class="tech"><img src="assets/logos/typescript.svg" alt="TypeScript"><span>TypeScript</span></div>
     <div class="tech"><img src="assets/logos/javascript.svg" alt="JavaScript"><span>JavaScript</span></div>
-    <div class="tech"><img src="assets/logos/riscv.svg" alt="RISC-V"><span>RISC-V ASM</span></div>
+    <div class="tech"><img src="assets/logos/riscv.svg" alt="RISC-V"><span>RISC-V</span></div>
     <div class="tech"><img src="assets/logos/nextdotjs.svg" alt="Next.js"><span>Next.js</span></div>
     <div class="tech"><img src="assets/logos/nestjs.svg" alt="NestJS"><span>NestJS</span></div>
     <div class="tech"><img src="assets/logos/postgresql.svg" alt="PostgreSQL"><span>PostgreSQL</span></div>
@@ -285,86 +273,190 @@
     <div class="tech"><img src="assets/logos/github.svg" alt="GitHub"><span>GitHub</span></div>
     <div class="tech"><img src="assets/logos/gitlab.svg" alt="GitLab"><span>GitLab</span></div>
     <div class="tech"><img src="assets/logos/docker.svg" alt="Docker"><span>Docker</span></div>
-    <div class="tech"><img src="assets/logos/linux.svg" alt="Linux"><span>Linux / macOS</span></div>
+    <div class="tech"><img src="assets/logos/linux.svg" alt="Linux"><span>Linux · macOS</span></div>
   </div>
+  <div class="drag-hint">Keep scrolling — the stack moves sideways</div>
 </section>
 
 <section id="journey">
-  <div class="kicker reveal">Journey</div>
-  <h2 class="reveal">Education & experience</h2>
-  <p class="lead reveal">Studying engineering by day, running a restaurant by night.</p>
-  <div class="timeline">
-    <div class="t-item reveal">
-      <div class="when">Sept 2023 — Jan 2027</div>
-      <h3>BSc General Engineering — Cyber Systems</h3>
-      <div class="where">Final year</div>
-      <p>Specializing in cyber systems: embedded programming, computer architecture, AI, control systems and full-stack software development. Comfortable in interdisciplinary teams from planning through implementation, testing and presentation.</p>
-      <div class="tags">
-        <span class="tag">Embedded Systems</span><span class="tag">AI & Search</span>
-        <span class="tag">Compilers</span><span class="tag">Control Systems</span><span class="tag">Full-Stack</span>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="split-title">Education & experience</h2>
+    </div>
+    <div class="t-item">
+      <div class="t-when">2023 — 2027</div>
+      <div class="t-body">
+        <h3>BSc General Engineering — Cyber Systems</h3>
+        <div class="t-where">DTU — Technical University of Denmark · final year</div>
+        <p>Specializing in cyber systems: embedded programming, computer architecture, AI, control systems and full-stack software development. Comfortable in interdisciplinary teams from planning through implementation, testing and presentation.</p>
+        <div class="tags">
+          <span class="tag">Embedded</span><span class="tag">AI</span><span class="tag">Compilers</span>
+          <span class="tag">Control</span><span class="tag">Full-Stack</span>
+        </div>
       </div>
     </div>
-    <div class="t-item reveal">
-      <div class="when">Oct 2023 — Present</div>
-      <h3>Chief Manager</h3>
-      <div class="where">Restaurant Romarin · started as waiter</div>
-      <p>Learned every corner of the business and worked my way up to chief manager. I run client and tasting events, design the menu, handle financial overviews and build the weekly work plans for the staff.</p>
-      <div class="tags">
-        <span class="tag">Team Leadership</span><span class="tag">Event Management</span>
-        <span class="tag">Financial Overview</span><span class="tag">Menu Design</span><span class="tag">Staff Planning</span>
+    <div class="t-item">
+      <div class="t-when">2023 — Now</div>
+      <div class="t-body">
+        <h3>Chief Manager</h3>
+        <div class="t-where">Restaurant Romarin · started as waiter</div>
+        <p>Learned every corner of the business and worked up to chief manager. I run client and tasting events, design the menu, handle financial overviews and build the weekly staff work plans.</p>
+        <div class="tags">
+          <span class="tag">Leadership</span><span class="tag">Events</span><span class="tag">Finance</span>
+          <span class="tag">Menu Design</span><span class="tag">Planning</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="qualities">
-  <div class="kicker reveal">How I work</div>
-  <h2 class="reveal">Personal qualities</h2>
-  <p class="lead reveal">The habits behind the skills.</p>
-  <div class="grid cols-2 stagger">
-    <div class="card quality"><div class="dot"></div><p><b>Analytical & systematic.</b> I divide complex problems into small, testable components and evaluate solutions logically.</p></div>
-    <div class="card quality"><div class="dot"></div><p><b>Persistent problem-solver.</b> I stay focused through technical difficulties and troubleshoot software, hardware and integration issues methodically.</p></div>
-    <div class="card quality"><div class="dot"></div><p><b>Independent learner.</b> I pick up unfamiliar technologies quickly and apply them in practice with limited supervision.</p></div>
-    <div class="card quality"><div class="dot"></div><p><b>Ownership-oriented.</b> I take responsibility for finishing tasks, validating results and meeting requirements.</p></div>
-    <div class="card quality"><div class="dot"></div><p><b>Adaptable.</b> Comfortable across software, electronics, databases, AI and engineering experimentation.</p></div>
-    <div class="card quality"><div class="dot"></div><p><b>Detail-oriented.</b> Close attention to system behaviour, test results, data accuracy and documentation.</p></div>
-    <div class="card quality"><div class="dot"></div><p><b>Collaborative.</b> Effective in interdisciplinary teams, from planning to implementation and presentation.</p></div>
-    <div class="card quality"><div class="dot"></div><p><b>Clear communicator.</b> I explain technical systems through reports, diagrams and demos — for any audience.</p></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="split-title">How I work</h2>
+    </div>
+    <div class="q-grid">
+      <div class="q"><b>Analytical & systematic</b>I divide complex problems into small, testable components and evaluate solutions logically.</div>
+      <div class="q"><b>Persistent problem-solver</b>Focused through technical difficulties; methodical across software, hardware and integration issues.</div>
+      <div class="q"><b>Independent learner</b>I pick up unfamiliar technologies quickly and apply them with limited supervision.</div>
+      <div class="q"><b>Ownership-oriented</b>I take responsibility for finishing tasks, validating results and meeting requirements.</div>
+      <div class="q"><b>Adaptable</b>Comfortable across software, electronics, databases, AI and experimentation.</div>
+      <div class="q"><b>Detail-oriented</b>Close attention to system behaviour, test results, data accuracy and documentation.</div>
+      <div class="q"><b>Collaborative</b>Effective in interdisciplinary teams, from planning to implementation and presentation.</div>
+      <div class="q"><b>Clear communicator</b>I explain technical systems through reports, diagrams and demos — for any audience.</div>
+    </div>
   </div>
 </section>
 
-<footer class="contact" id="contact">
-  <div class="kicker reveal" style="justify-content:center;display:inline-flex">Contact</div>
-  <h2 class="reveal">Let's build something.</h2>
-  <p class="reveal">Open to opportunities in software, embedded systems and everything in between.</p>
-  <a class="email-btn reveal" href="mailto:rivenco.dan@gmail.com">rivenco.dan@gmail.com</a>
-  <div class="foot">© 2026 Dan Rivenco · Built with care, no frameworks needed.</div>
-</footer>
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="split-title">Get in touch</h2>
+    </div>
+    <a class="email" href="mailto:rivenco.dan@gmail.com">rivenco.dan@gmail.com</a>
+    <div class="foot">
+      <span>© 2026 Dan Rivenco</span>
+      <span>Copenhagen · Denmark</span>
+    </div>
+  </div>
+</section>
 
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script src="assets/js/SplitText.min.js"></script>
 <script>
-  // scroll progress + nav border
-  const bar=document.getElementById('progress'),nav=document.getElementById('nav');
-  let ticking=false;
-  addEventListener('scroll',()=>{
-    if(ticking)return;ticking=true;
-    requestAnimationFrame(()=>{
-      const h=document.documentElement;
-      bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
-      nav.classList.toggle('scrolled',h.scrollTop>10);
-      ticking=false;
-    });
-  },{passive:true});
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  // reveal on scroll
-  const io=new IntersectionObserver(entries=>{
-    for(const e of entries)if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
-  },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10), {passive:true});
 
-  // stagger children delays
-  document.querySelectorAll('.stagger').forEach(g=>{
-    [...g.children].forEach((c,i)=>c.style.transitionDelay=Math.min(i*55,440)+'ms');
+const mm = gsap.matchMedia();
+mm.add("(prefers-reduced-motion: no-preference)", () => {
+
+  /* ---- hero: split-text load-in (cocktails style) ---- */
+  const heroLines = document.querySelectorAll('#hero .title-line');
+  gsap.from(heroLines, {
+    yPercent: 110, duration: 1.6, ease: 'expo.out', stagger: 0.12
   });
+  const heroSub = new SplitText('.hero-sub', { type: 'lines' });
+  gsap.from(heroSub.lines, {
+    opacity: 0, yPercent: 100, duration: 1.4, ease: 'expo.out', stagger: 0.06, delay: .5
+  });
+  gsap.from('.hero-meta > div', {
+    opacity: 0, y: 24, duration: 1, ease: 'expo.out', stagger: 0.08, delay: .8
+  });
+  gsap.from('.hero-photo', {
+    opacity: 0, x: 80, duration: 1.6, ease: 'expo.out', delay: .3
+  });
+
+  /* ---- hero: scrub parallax while leaving ---- */
+  gsap.timeline({
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+  })
+  .to('.hero-copy',  { yPercent: -18, opacity: .25 }, 0)
+  .to('.hero-photo', { yPercent: 14 }, 0)
+  .to('.scroll-hint',{ opacity: 0 }, 0);
+
+  /* ---- section titles: word reveal on enter ---- */
+  document.querySelectorAll('.split-title').forEach(t => {
+    const split = new SplitText(t, { type: 'words' });
+    gsap.from(split.words, {
+      yPercent: 110, opacity: 0, duration: 1, ease: 'expo.out', stagger: 0.04,
+      scrollTrigger: { trigger: t, start: 'top 85%' }
+    });
+    gsap.from(t.closest('.sec-head').querySelector('.sec-num'), {
+      opacity: 0, x: -30, duration: 1, ease: 'expo.out',
+      scrollTrigger: { trigger: t, start: 'top 85%' }
+    });
+  });
+
+  /* ---- about: image from left, text from right (scrub-linked) ---- */
+  gsap.timeline({
+    scrollTrigger: { trigger: '#about .about-grid', start: 'top 90%', end: 'top 40%', scrub: 1 }
+  })
+  .from('.from-left',  { x: -120, opacity: 0, ease: 'none' }, 0)
+  .from('.from-right', { x: 120,  opacity: 0, ease: 'none' }, 0);
+  /* photo inner parallax */
+  gsap.fromTo('.about-photo img', { yPercent: -8 }, {
+    yPercent: 8, ease: 'none',
+    scrollTrigger: { trigger: '.about-photo', start: 'top bottom', end: 'bottom top', scrub: true }
+  });
+
+  /* ---- skills: rows slide in from alternating sides, scrub ---- */
+  document.querySelectorAll('.skill-row').forEach((row, i) => {
+    gsap.from(row, {
+      x: i % 2 ? 90 : -90, opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: row, start: 'top 96%', end: 'top 70%', scrub: 1 }
+    });
+  });
+
+  /* ---- stack: pinned horizontal scroll ---- */
+  const track = document.querySelector('.track');
+  const getDist = () => track.scrollWidth - innerWidth;
+  gsap.to(track, {
+    x: () => -getDist(), ease: 'none',
+    scrollTrigger: {
+      trigger: '#stack', start: 'top top', end: () => '+=' + getDist(),
+      pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1
+    }
+  });
+  /* cards drift up slightly, staggered, while track moves */
+  gsap.from('.tech', {
+    y: 60, opacity: 0, duration: .8, ease: 'expo.out', stagger: 0.05,
+    scrollTrigger: { trigger: '#stack', start: 'top 70%' }
+  });
+
+  /* ---- journey: dates from left, bodies from right ---- */
+  document.querySelectorAll('.t-item').forEach(item => {
+    gsap.timeline({
+      scrollTrigger: { trigger: item, start: 'top 95%', end: 'top 55%', scrub: 1 }
+    })
+    .from(item.querySelector('.t-when'), { x: -80, opacity: 0, ease: 'none' }, 0)
+    .from(item.querySelector('.t-body'), { x: 80, opacity: 0, ease: 'none' }, 0);
+  });
+
+  /* ---- qualities: columns from opposite sides ---- */
+  document.querySelectorAll('.q').forEach((q, i) => {
+    gsap.from(q, {
+      x: i % 2 ? 70 : -70, opacity: 0, ease: 'none',
+      scrollTrigger: { trigger: q, start: 'top 96%', end: 'top 72%', scrub: 1 }
+    });
+  });
+
+  /* ---- contact: email chars rise ---- */
+  const emailSplit = new SplitText('.email', { type: 'chars' });
+  gsap.from(emailSplit.chars, {
+    yPercent: 120, opacity: 0, duration: .9, ease: 'expo.out', stagger: 0.02,
+    scrollTrigger: { trigger: '#contact', start: 'top 75%' }
+  });
+  gsap.from('.foot', {
+    opacity: 0, y: 30, duration: 1, ease: 'expo.out',
+    scrollTrigger: { trigger: '.foot', start: 'top 95%' }
+  });
+});
 </script>
 </body>
 </html>
